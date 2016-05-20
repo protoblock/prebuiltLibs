@@ -1,0 +1,517 @@
+google/protobuf/compiler/cpp/cpp_helpers.lo: \
+ google/protobuf/compiler/cpp/cpp_helpers.cc \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/limits \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/c++config.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/os_defines.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/cpu_defines.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/map \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_tree.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_algobase.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/functexcept.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/exception_defines.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/cpp_type_traits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ext/type_traits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ext/numeric_traits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_pair.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/move.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/concept_check.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_iterator_base_types.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_iterator_base_funcs.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/debug/debug.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_iterator.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/ptr_traits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/predefined_ops.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/allocator.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/c++allocator.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ext/new_allocator.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/new \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/exception \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/atomic_lockfree_defines.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/memoryfwd.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_function.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/backward/binders.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ext/alloc_traits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_map.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_multimap.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/range_access.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/vector \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_construct.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_uninitialized.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_vector.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_bvector.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/vector.tcc \
+ google/protobuf/stubs/hash.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/string.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/cdefs.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/cdefs_elf.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/android/api-level.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9/include/stddef.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/malloc.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/xlocale.h \
+ google/protobuf/stubs/common.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/assert.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/stdlib.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/alloca.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/strings.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/types.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9/include/stdint.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/stdint.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/machine/wchar_limits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/types.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/types.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/types.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/int-ll64.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/bitsperlong.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/bitsperlong.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/posix_types.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/stddef.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/compiler.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/posix_types.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/posix_types.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/sysmacros.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/memory.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/cstddef \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/string \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stringfwd.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/char_traits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/postypes.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/cwchar \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/wchar.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/stdio.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9/include/stdarg.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/time.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/time.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/time.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/localefwd.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/c++locale.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/clocale \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/locale.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/iosfwd \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/cctype \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/ctype.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/ostream_insert.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/cxxabi_forced.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/basic_string.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ext/atomicity.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/gthr.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/gthr-default.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/pthread.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/signal.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/errno.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/errno.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/errno.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/errno.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/errno-base.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9/include-fixed/limits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9/include-fixed/syslimits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/limits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/limits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/limits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/syslimits.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/sigcontext.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/signal.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/signal.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/signal-defs.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/siginfo.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/siginfo.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/ucontext.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/user.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sched.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/sched.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/atomic_word.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/basic_string.tcc \
+ ../config.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/unordered_map \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/utility \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_relops.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/type_traits \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/functional_hash.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/hashtable.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/hashtable_policy.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/unordered_map.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/unordered_set \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/unordered_set.h \
+ google/protobuf/compiler/cpp/cpp_helpers.h google/protobuf/descriptor.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/set \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_set.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_multiset.h \
+ google/protobuf/descriptor.pb.h google/protobuf/generated_message_util.h \
+ google/protobuf/stubs/once.h google/protobuf/stubs/atomicops.h \
+ google/protobuf/stubs/platform_macros.h \
+ google/protobuf/stubs/atomicops_internals_arm_gcc.h \
+ google/protobuf/message.h google/protobuf/message_lite.h \
+ google/protobuf/repeated_field.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/iterator \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ostream \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ios \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/ios_base.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/locale_classes.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/locale_classes.tcc \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/streambuf \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/streambuf.tcc \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/basic_ios.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/locale_facets.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/cwctype \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/wctype.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/ctype_base.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/streambuf_iterator.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/ctype_inline.h \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/locale_facets.tcc \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/basic_ios.tcc \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/ostream.tcc \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/istream \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/istream.tcc \
+ /Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stream_iterator.h \
+ google/protobuf/stubs/type_traits.h \
+ google/protobuf/stubs/template_util.h google/protobuf/extension_set.h \
+ google/protobuf/generated_enum_reflection.h \
+ google/protobuf/unknown_field_set.h google/protobuf/io/printer.h \
+ google/protobuf/stubs/strutil.h google/protobuf/stubs/substitute.h
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/limits:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/c++config.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/os_defines.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/cpu_defines.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/map:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_tree.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_algobase.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/functexcept.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/exception_defines.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/cpp_type_traits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ext/type_traits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ext/numeric_traits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_pair.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/move.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/concept_check.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_iterator_base_types.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_iterator_base_funcs.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/debug/debug.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_iterator.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/ptr_traits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/predefined_ops.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/allocator.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/c++allocator.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ext/new_allocator.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/new:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/exception:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/atomic_lockfree_defines.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/memoryfwd.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_function.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/backward/binders.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ext/alloc_traits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_map.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_multimap.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/range_access.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/vector:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_construct.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_uninitialized.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_vector.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_bvector.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/vector.tcc:
+
+google/protobuf/stubs/hash.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/string.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/cdefs.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/cdefs_elf.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/android/api-level.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9/include/stddef.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/malloc.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/xlocale.h:
+
+google/protobuf/stubs/common.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/assert.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/stdlib.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/alloca.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/strings.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/types.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9/include/stdint.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/stdint.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/machine/wchar_limits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/types.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/types.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/types.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/int-ll64.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/bitsperlong.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/bitsperlong.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/posix_types.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/stddef.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/compiler.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/posix_types.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/posix_types.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/sysmacros.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/memory.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/cstddef:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/string:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stringfwd.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/char_traits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/postypes.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/cwchar:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/wchar.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/stdio.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9/include/stdarg.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/time.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/time.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/time.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/localefwd.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/c++locale.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/clocale:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/locale.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/iosfwd:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/cctype:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/ctype.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/ostream_insert.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/cxxabi_forced.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/basic_string.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ext/atomicity.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/gthr.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/gthr-default.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/pthread.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/signal.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/errno.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/errno.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/errno.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/errno.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/errno-base.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9/include-fixed/limits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/lib/gcc/arm-linux-androideabi/4.9/include-fixed/syslimits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/limits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/limits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/limits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/syslimits.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/sigcontext.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/signal.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/signal.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/signal-defs.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm/siginfo.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/asm-generic/siginfo.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/ucontext.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sys/user.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/sched.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/linux/sched.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/atomic_word.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/basic_string.tcc:
+
+../config.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/unordered_map:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/utility:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_relops.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/type_traits:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/functional_hash.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/hashtable.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/hashtable_policy.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/unordered_map.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/unordered_set:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/tr1/unordered_set.h:
+
+google/protobuf/compiler/cpp/cpp_helpers.h:
+
+google/protobuf/descriptor.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/set:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_set.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stl_multiset.h:
+
+google/protobuf/descriptor.pb.h:
+
+google/protobuf/generated_message_util.h:
+
+google/protobuf/stubs/once.h:
+
+google/protobuf/stubs/atomicops.h:
+
+google/protobuf/stubs/platform_macros.h:
+
+google/protobuf/stubs/atomicops_internals_arm_gcc.h:
+
+google/protobuf/message.h:
+
+google/protobuf/message_lite.h:
+
+google/protobuf/repeated_field.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/iterator:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ostream:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/ios:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/ios_base.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/locale_classes.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/locale_classes.tcc:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/streambuf:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/streambuf.tcc:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/basic_ios.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/locale_facets.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/cwctype:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/platforms/android-24/arch-arm/usr/include/wctype.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/ctype_base.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/streambuf_iterator.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//libs/armeabi-v7a/include/bits/ctype_inline.h:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/locale_facets.tcc:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/basic_ios.tcc:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/ostream.tcc:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/istream:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/istream.tcc:
+
+/Users/satoshi/Desktop/ndk/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9//include/bits/stream_iterator.h:
+
+google/protobuf/stubs/type_traits.h:
+
+google/protobuf/stubs/template_util.h:
+
+google/protobuf/extension_set.h:
+
+google/protobuf/generated_enum_reflection.h:
+
+google/protobuf/unknown_field_set.h:
+
+google/protobuf/io/printer.h:
+
+google/protobuf/stubs/strutil.h:
+
+google/protobuf/stubs/substitute.h:
