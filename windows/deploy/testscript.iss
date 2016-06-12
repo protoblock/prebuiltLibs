@@ -36,7 +36,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Source: "release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system 
 
-
+[Dirs] 
+Name: "{app}\storage"; AfterInstall: CopyOldSecret
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
@@ -45,3 +46,20 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: 
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+
+
+[Code]
+
+var
+  Location: String;
+  
+procedure CopyOldSecret();
+begin
+    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{79913283-A35B-4274-927C-1B52D286D939}_is1',
+       'InstallLocation', Location) then
+    begin
+      // Successfully read the value
+      FileCopy(Location + '\storage\secret3.out', ExpandConstant('{app}\storage\secret3.out'), True);
+      MsgBox('Location Path: ' + Location, mbInformation, MB_OK);
+    end;
+end;
