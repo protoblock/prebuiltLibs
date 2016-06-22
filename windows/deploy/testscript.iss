@@ -11,7 +11,7 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{FA7804E4-2784-49B7-901B-5254705AD538}
+AppId={{6115A03E-0B1B-4648-BA42-C95445722391}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -19,7 +19,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf}\{#MyAppName}
+DefaultDirName={userdocs}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 OutputBaseFilename=ProtoBlock2016-setup
@@ -60,6 +60,6 @@ begin
     begin
       // Successfully read the value
       FileCopy(Location + '\storage\secret3.out', ExpandConstant('{app}\storage\secret3.out'), True);
-      MsgBox('Location Path: ' + Location, mbInformation, MB_OK);
+      MsgBox('Importing names from: ' + Location, mbInformation, MB_OK);
     end;
 end;
