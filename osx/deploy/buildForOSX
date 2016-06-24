@@ -1,0 +1,9 @@
+#!/bin/bash 
+
+cd $HOME/deploy
+echo "Cleanup old apps"
+rm -r *.app *.dmg ProtoBlock2016
+cp -r  /Users/jay/build-ProRoto2016-Qt5_6_Desktop-Release/Applications/ProtoBlock2016/ProtoBlock2016.app  $HOME/deploy
+
+/Qt/5.6/clang_64/bin/macdeployqt /Users/jay/deploy/ProtoBlock2016.app -qmldir=/Qt/5.6/clang_64/qml -verbose=3
+

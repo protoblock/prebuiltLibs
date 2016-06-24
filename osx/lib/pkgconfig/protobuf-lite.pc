@@ -1,5 +1,5 @@
-prefix=/Users/satoshi/Desktop/fc/ios/extrenal/prototbuf
-exec_prefix=/Users/satoshi/Desktop/fc/ios/extrenal/prototbuf/platform/x86_64
+prefix=/usr/local/Cellar/protobuf250/2.5.0
+exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
