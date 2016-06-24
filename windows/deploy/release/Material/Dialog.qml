@@ -1,73 +1,30 @@
-/*
- * QML Material - An application framework implementing Material Design.
- *
- * Copyright (C) 2014-2016 Michael Spencer <sonrisesoftware@gmail.com>
- *               2015 Bogdan Cuza <bogdan.cuza@hotmail.com>
- *               2015 Mikhail Ivchenko <ematirov@gmail.com>
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
-
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
+import QtQuick.Window 2.0
 import Material 1.0
-import ProRotoQml.Utils 1.0
+import ProRotoQml.Theme 1.0
 import Material.Extras 1.0
 
-/*!
-   \qmltype Dialog
-   \inqmlmodule Material
-   \brief Dialogs inform users about critical information, require users to make
-   decisions, or encapsulate multiple tasks within a discrete process
- */
 PopupBase {
     id: dialog
-
     overlayLayer: "dialogOverlayLayer"
     overlayColor: Qt.rgba(0, 0, 0, 0.3)
-
     opacity: showing ? 1 : 0
     visible: opacity > 0
-
-    width: Math.max(minimumWidth,
-                    content.contentWidth + 2 * contentMargins)
-
-    height: Math.min(parent.height - 64 * Units.dp,
-                     headerView.height +
-                     content.contentHeight +
-                     (floatingActions ? 0 : buttonContainer.height))
-
-    property int contentMargins: 24 * Units.dp
-
-    property int minimumWidth: Device.isMobile ? 280 * Units.dp : 300 * Units.dp
-
+    width: ProtoScreen.formFactor === "phone" || ProtoScreen.formFactor === "tablet" ? Screen.width :  root.width / 2
+    height: ProtoScreen.formFactor === "phone" || ProtoScreen.formFactor === "tablet" ? Screen.height / 1.07 : root.height / 2
+    property int contentMargins: ProtoScreen.guToPx(3)
+    property int minimumWidth: ProtoScreen.guToPx(37.5)
+    property int minimumHeight: ProtoScreen.guToPx(37.5)
     property alias title: titleLabel.text
     property alias text: textLabel.text
-    property bool enabled: true
-
-    /*!
-       \qmlproperty Button negativeButton
-       The negative button, displayed as the leftmost button on the right of the dialog buttons.
-       This is usually used to dismiss the dialog.
-     */
     property alias negativeButton: negativeButton
-
-    /*!
-       \qmlproperty Button primaryButton
-       The primary button, displayed as the rightmost button in the dialog buttons row. This is
-       usually used to accept the dialog's action.
-     */
     property alias positiveButton: positiveButton
-
     property string negativeButtonText: "Cancel"
     property string positiveButtonText: "Ok"
     property alias positiveButtonEnabled: positiveButton.enabled
-
     property bool hasActions: true
     property bool floatingActions: false
-
     default property alias dialogContent: column.data
 
     signal accepted()
@@ -76,15 +33,10 @@ PopupBase {
     anchors {
         centerIn: parent
         verticalCenterOffset: showing ? 0 : -(dialog.height/3)
-
-        Behavior on verticalCenterOffset {
-            NumberAnimation { duration: 200 }
-        }
+        Behavior on verticalCenterOffset { NumberAnimation { duration: 200 } }
     }
 
-    Behavior on opacity {
-        NumberAnimation { duration: 200 }
-    }
+    Behavior on opacity { NumberAnimation { duration: 200 } }
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Escape) {
@@ -113,16 +65,13 @@ PopupBase {
 
     View {
         id: dialogContainer
-
         anchors.fill: parent
         elevation: 5
-        radius: 2 * Units.dp
+        radius: ProtoScreen.guToPx(.5)
         backgroundColor: "white"
-
         MouseArea {
             anchors.fill: parent
             propagateComposedEvents: false
-
             onClicked: {
                 mouse.accepted = false
             }
@@ -134,11 +83,9 @@ PopupBase {
 
         Flickable {
             id: content
-
             contentWidth: column.implicitWidth
             contentHeight: column.height + (column.height > 0 ? contentMargins : 0)
             clip: true
-
             anchors {
                 left: parent.left
                 right: parent.right
@@ -160,13 +107,12 @@ PopupBase {
 
             Column {
                 id: column
+                width: content.width - 2 * contentMargins
+                spacing: ProtoScreen.guToPx(1)
                 anchors {
                     left: parent.left
                     leftMargin: contentMargins
                 }
-
-                width: content.width - 2 * contentMargins
-                spacing: 8 * Units.dp
             }
         }
 
@@ -175,41 +121,34 @@ PopupBase {
         }
 
         Item {
+            height: headerView.height
             anchors {
                 left: parent.left
                 right: parent.right
                 top: parent.top
             }
-
-            height: headerView.height
-
             View {
                 backgroundColor: "white"
                 elevation: content.atYBeginning ? 0 : 1
                 fullWidth: true
                 radius: dialogContainer.radius
-
+                height: parent.height
                 anchors {
                     left: parent.left
                     right: parent.right
                     top: parent.top
                 }
-
-                height: parent.height
             }
         }
 
 
         Column {
             id: headerView
-
             spacing: 0
-
             anchors {
                 left: parent.left
                 right: parent.right
                 top: parent.top
-
                 leftMargin: contentMargins
                 rightMargin: contentMargins
             }
@@ -222,7 +161,6 @@ PopupBase {
 
             Label {
                 id: titleLabel
-
                 width: parent.width
                 wrapMode: Text.Wrap
                 style: "title"
@@ -231,13 +169,12 @@ PopupBase {
 
             Item {
                 width: parent.width
-                height: 20 * Units.dp
+                height: ProtoScreen.guToPx(2.5)
                 visible: titleLabel.visible
             }
 
             Label {
                 id: textLabel
-
                 width: parent.width
                 wrapMode: Text.Wrap
                 style: "dialog"
@@ -254,25 +191,22 @@ PopupBase {
 
         Item {
             id: buttonContainer
-
             anchors {
                 bottom: parent.bottom
                 right: parent.right
                 left: parent.left
             }
 
-            height: hasActions ? 52 * Units.dp : 2 * Units.dp
+            height: hasActions ? ProtoScreen.guToPx(6.5) : ProtoScreen.guToPx(2)
 
             View {
                 id: buttonView
-
                 height: parent.height
                 backgroundColor: floatingActions ? "transparent" : "white"
                 elevation: content.atYEnd ? 0 : 1
                 fullWidth: true
                 radius: dialogContainer.radius
                 elevationInverted: true
-
                 anchors {
                     bottom: parent.bottom
                     right: parent.right
@@ -281,16 +215,14 @@ PopupBase {
 
                 Button {
                     id: negativeButton
-
                     visible: hasActions
                     text: negativeButtonText
                     textColor: Theme.accentColor
                     context: "dialog"
-
                     anchors {
                         verticalCenter: parent.verticalCenter
                         right: positiveButton.visible ? positiveButton.left : parent.right
-                        rightMargin: 8 * Units.dp
+                        rightMargin: ProtoScreen.guToPx(1)
                     }
 
                     onClicked: {
@@ -301,7 +233,6 @@ PopupBase {
 
                 Button {
                     id: positiveButton
-
                     visible: hasActions
                     text: positiveButtonText
                     textColor: Theme.accentColor
@@ -309,10 +240,9 @@ PopupBase {
 
                     anchors {
                         verticalCenter: parent.verticalCenter
-                        rightMargin: 8 * Units.dp
+                        rightMargin: ProtoScreen.guToPx(1)
                         right: parent.right
                     }
-
                     onClicked: {
                         close()
                         accepted();

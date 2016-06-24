@@ -30,7 +30,7 @@ Page {
      *
      * \since 0.3
      */
-    readonly property Tab selectedTab: {
+    property Tab selectedTab: {
         if ( tabView.count > 0 )
             tabView.getTab(selectedTabIndex)
         else
@@ -46,17 +46,13 @@ Page {
 //            ? tabView.getTab(selectedTabIndex) : null
 
     tabs: tabView
-
     onSelectedTabIndexChanged: tabView.currentIndex = page.selectedTabIndex
 
     Controls.TabView {
         id: tabView
-
         currentIndex: page.selectedTabIndex
         anchors.fill: parent
-
         tabsVisible: false
-
         // Override the style to remove the frame
         style: Styles.TabViewStyle {
             frameOverlap: 0
@@ -64,7 +60,6 @@ Page {
         }
 
         onCurrentIndexChanged: page.selectedTabIndex = currentIndex
-
         onCountChanged: {
             for (var i = 0; i < count; i++) {
                 var tab = getTab(i)
