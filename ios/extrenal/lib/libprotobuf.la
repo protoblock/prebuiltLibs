@@ -23,9 +23,9 @@ dependency_libs=' -lz -lc++ -lc++abi'
 weak_library_names=''
 
 # Version information for libprotobuf.
-current=8
+current=9
 age=0
-revision=0
+revision=1
 
 # Is this an already installed library?
 installed=yes
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/Users/satoshi/Desktop/fc/ios/extrenal/prototbuf/platform/armv7/lib'
+libdir='/Users/satoshi/Desktop/fc/ios/prototbuf/built-2.6.1/platform/armv7/lib'

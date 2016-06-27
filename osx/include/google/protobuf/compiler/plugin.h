@@ -1,6 +1,6 @@
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
-// http://code.google.com/p/protobuf/
+// https://developers.google.com/protocol-buffers/
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -36,7 +36,7 @@
 // CodeGenerator, then create a main() function like:
 //   int main(int argc, char* argv[]) {
 //     MyCodeGenerator generator;
-//     return google::protobuf::compiler::PluginMain(argc, argv, &generator);
+//     return google_public::protobuf::compiler::PluginMain(argc, argv, &generator);
 //   }
 // You must link your plugin against libprotobuf and libprotoc.
 //
@@ -56,7 +56,7 @@
 #define GOOGLE_PROTOBUF_COMPILER_PLUGIN_H__
 
 #include <google/protobuf/stubs/common.h>
-namespace google {
+namespace google_public {
 namespace protobuf {
 namespace compiler {
 

@@ -1,6 +1,6 @@
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
-// http://code.google.com/p/protobuf/
+// https://developers.google.com/protocol-buffers/
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -82,7 +82,7 @@ inline BOOL GetMessage(
 
 namespace std {}
 
-namespace google {
+namespace google_public {
 namespace protobuf {
 
 #undef GOOGLE_DISALLOW_EVIL_CONSTRUCTORS
@@ -113,24 +113,24 @@ namespace internal {
 
 // The current version, represented as a single integer to make comparison
 // easier:  major * 10^6 + minor * 10^3 + micro
-#define GOOGLE_PROTOBUF_VERSION 2005000
+#define GOOGLE_PROTOBUF_VERSION 2006001
 
 // The minimum library version which works with the current version of the
 // headers.
-#define GOOGLE_PROTOBUF_MIN_LIBRARY_VERSION 2005000
+#define GOOGLE_PROTOBUF_MIN_LIBRARY_VERSION 2006000
 
 // The minimum header version which works with the current version of
 // the library.  This constant should only be used by protoc's C++ code
 // generator.
-static const int kMinHeaderVersionForLibrary = 2005000;
+static const int kMinHeaderVersionForLibrary = 2006000;
 
 // The minimum protoc version which works with the current version of the
 // headers.
-#define GOOGLE_PROTOBUF_MIN_PROTOC_VERSION 2005000
+#define GOOGLE_PROTOBUF_MIN_PROTOC_VERSION 2006000
 
 // The minimum header version which works with the current version of
 // protoc.  This constant should only be used in VerifyVersion().
-static const int kMinHeaderVersionForProtoc = 2005000;
+static const int kMinHeaderVersionForProtoc = 2006000;
 
 // Verifies that the headers and libraries are compatible.  Use the macro
 // below to call this.
@@ -147,7 +147,7 @@ std::string LIBPROTOBUF_EXPORT VersionString(int version);
 // matches the headers you compiled against.  If a version mismatch is
 // detected, the process will abort.
 #define GOOGLE_PROTOBUF_VERIFY_VERSION                                    \
-  ::google::protobuf::internal::VerifyVersion(                            \
+  ::google_public::protobuf::internal::VerifyVersion(                            \
     GOOGLE_PROTOBUF_VERSION, GOOGLE_PROTOBUF_MIN_LIBRARY_VERSION,         \
     __FILE__)
 
@@ -378,7 +378,7 @@ struct CompileAssert {
 
 #undef GOOGLE_COMPILE_ASSERT
 #define GOOGLE_COMPILE_ASSERT(expr, msg) \
-  typedef ::google::protobuf::internal::CompileAssert<(bool(expr))> \
+  typedef ::google_public::protobuf::internal::CompileAssert<(bool(expr))> \
           msg[bool(expr) ? 1 : -1]
 
 
@@ -685,6 +685,7 @@ class LIBPROTOBUF_EXPORT LogFinisher {
 #undef GOOGLE_LOG_IF
 
 #undef GOOGLE_CHECK
+#undef GOOGLE_CHECK_OK
 #undef GOOGLE_CHECK_EQ
 #undef GOOGLE_CHECK_NE
 #undef GOOGLE_CHECK_LT
@@ -703,14 +704,15 @@ class LIBPROTOBUF_EXPORT LogFinisher {
 #undef GOOGLE_DCHECK_GE
 
 #define GOOGLE_LOG(LEVEL)                                                 \
-  ::google::protobuf::internal::LogFinisher() =                           \
-    ::google::protobuf::internal::LogMessage(                             \
-      ::google::protobuf::LOGLEVEL_##LEVEL, __FILE__, __LINE__)
+  ::google_public::protobuf::internal::LogFinisher() =                           \
+    ::google_public::protobuf::internal::LogMessage(                             \
+      ::google_public::protobuf::LOGLEVEL_##LEVEL, __FILE__, __LINE__)
 #define GOOGLE_LOG_IF(LEVEL, CONDITION) \
   !(CONDITION) ? (void)0 : GOOGLE_LOG(LEVEL)
 
 #define GOOGLE_CHECK(EXPRESSION) \
   GOOGLE_LOG_IF(FATAL, !(EXPRESSION)) << "CHECK failed: " #EXPRESSION ": "
+#define GOOGLE_CHECK_OK(A) GOOGLE_CHECK(A)
 #define GOOGLE_CHECK_EQ(A, B) GOOGLE_CHECK((A) == (B))
 #define GOOGLE_CHECK_NE(A, B) GOOGLE_CHECK((A) != (B))
 #define GOOGLE_CHECK_LT(A, B) GOOGLE_CHECK((A) <  (B))
@@ -720,7 +722,8 @@ class LIBPROTOBUF_EXPORT LogFinisher {
 
 namespace internal {
 template<typename T>
-T* CheckNotNull(const char *file, int line, const char *name, T* val) {
+T* CheckNotNull(const char* /* file */, int /* line */,
+                const char* name, T* val) {
   if (val == NULL) {
     GOOGLE_LOG(FATAL) << name;
   }
