@@ -448,7 +448,7 @@ class RepeatedPtrField : public internal::RepeatedPtrFieldBase {
   void SwapElements(int index1, int index2);
 
   // STL-like iterator support
-  typedef internal::RepeatedPtrIterator<Element> iterator;
+  typedef internal::RepeatedPtrIterator<Element>    iterator;
   typedef internal::RepeatedPtrIterator<const Element> const_iterator;
   typedef Element value_type;
   typedef value_type& reference;
