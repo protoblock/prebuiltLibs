@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "protoblock"
-#define MyAppVersion "0.0.2"
+#define MyAppVersion "0.2.0"
 #define MyAppPublisher "Protoblock, INC"
 #define MyAppURL "http://www.protoblock.com/"
 #define MyAppExeName "ProtoBlock2016.exe"
@@ -22,7 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={userdocs}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-OutputBaseFilename=ProtoBlock2016-setup
+OutputBaseFilename=protoblock
 Compression=lzma
 SolidCompression=yes
 
