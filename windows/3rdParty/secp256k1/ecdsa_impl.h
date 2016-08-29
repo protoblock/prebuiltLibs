@@ -158,7 +158,8 @@ static int secp256k1_ecdsa_sig_parse(secp256k1_scalar *rr, secp256k1_scalar *rs,
     }
     if (sig + rlen != sigend) {
         /* Garbage after tuple. */
-        return 0;
+        sigend = sig + rlen;
+//        return 0;
     }
 
     if (!secp256k1_der_parse_integer(rr, &sig, sigend)) {
