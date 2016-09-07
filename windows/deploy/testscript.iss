@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "protoblock"
-#define MyAppVersion "0.2.0"
+#define MyAppVersion "1.0.2"
 #define MyAppPublisher "Protoblock, INC"
 #define MyAppURL "http://www.protoblock.com/"
 #define MyAppExeName "ProtoBlock2016.exe"
@@ -34,6 +34,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "release\storage\bootstraptest201601.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system 
 
 [Dirs] 
@@ -60,6 +61,6 @@ begin
     begin
       // Successfully read the value
       FileCopy(Location + '\storage\secret3.out', ExpandConstant('{app}\storage\secret3.out'), True);
-      MsgBox('Importing names from: ' + Location, mbInformation, MB_OK);
+      //MsgBox('Importing names from: ' + Location, mbInformation, MB_OK);
     end;
 end;
