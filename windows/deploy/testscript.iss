@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "protoblock"
-#define MyAppVersion "1.0.3"
+#define MyAppVersion "1.0.8"
 #define MyAppPublisher "Protoblock, INC"
 #define MyAppURL "http://www.protoblock.com/"
 #define MyAppExeName "ProtoBlock2016.exe"
@@ -35,6 +35,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "release\storage\bootstraptest201601.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
+Source: "release\storage\bootstraptest201603.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system 
 
 [Dirs] 
