@@ -25,6 +25,9 @@ AllowNoIcons=yes
 OutputBaseFilename=protoblock
 Compression=lzma
 SolidCompression=yes
+AlwaysShowDirOnReadyPage=TrueUsePreviousAppDir=True
+DisableDirPage=No
+
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
