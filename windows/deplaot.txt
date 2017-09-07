@@ -1,1 +1,1 @@
-windeployqtd --release --qmldir D:\Qt\5.6\msvc2013_64\qml -qml -quick -xmlpatterns -core
+windeployqt --release --qmldir D:\Qt\5.7\msvc2013_64\qml -qml -quick -xmlpatterns -core

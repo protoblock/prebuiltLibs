@@ -2,10 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "protoblock"
-#define MyAppVersion "2.1.1"
+#define MyAppVersion "2.3"
 #define MyAppPublisher "Protoblock, Inc"
 #define MyAppURL "http://www.protoblock.com/"
-#define MyAppExeName "ProtoBlock2016.exe"
+#define MyAppExeName "Protoblock2017.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -36,11 +36,12 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "release\storage\bootstraptest201601.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
-Source: "release\storage\bootstraptest201603.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
-Source: "release\storage\GenesisTransition-Tr-Transaction.txt";  DestDir: "{app}\storage\"; Flags: ignoreversion
-Source: "release\storage\Transition2014.out";  DestDir: "{app}\storage\"; Flags: ignoreversion
+Source: "release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; 
+;Source: "release\storage\bootstraptest201601.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
+;Source: "release\storage\bootstraptest201603.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
+Source: "storage\GenesisTransition-Tr-Transaction.txt";  DestDir: "{app}\storage\"; Flags: ignoreversion
+Source: "storage\Transition2014.out";  DestDir: "{app}\storage\"; Flags: ignoreversion
+Source: "storage\boot2strap201700.out";  DestDir: "{app}\storage\"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system 
 
