@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "protoblock"
-#define MyAppVersion "2.4.3"
+#define MyAppVersion "2.4.4"
 #define MyAppPublisher "Protoblock, Inc"
 #define MyAppURL "http://www.protoblock.com/"
 #define MyAppExeName "Protoblock.exe"
@@ -41,7 +41,7 @@ Source: "release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs creat
 ;Source: "release\storage\bootstraptest201603.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
 Source: "storage\GenesisTransition-Tr-Transaction.txt"; DestDir: "{app}\storage\"; Flags: ignoreversion
 Source: "storage\Transition2014.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
-Source: "storage\boot2strap201700.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
+Source: "storage\boot2strap201702.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system
 
