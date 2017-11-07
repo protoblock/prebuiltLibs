@@ -2,10 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "protoblock"
-#define MyAppVersion "0.2.0"
-#define MyAppPublisher "Protoblock, INC"
+#define MyAppVersion "2.4.3"
+#define MyAppPublisher "Protoblock, Inc"
 #define MyAppURL "http://www.protoblock.com/"
-#define MyAppExeName "ProtoBlock2016.exe"
+#define MyAppExeName "Protoblock.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -25,6 +25,9 @@ AllowNoIcons=yes
 OutputBaseFilename=protoblock
 Compression=lzma
 SolidCompression=yes
+AlwaysShowDirOnReadyPage=TrueUsePreviousAppDir=True
+DisableDirPage=No
+
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -33,8 +36,14 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system 
+Source: "release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; 
+;Source: "release\storage\bootstraptest201601.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
+;Source: "release\storage\bootstraptest201603.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
+Source: "storage\GenesisTransition-Tr-Transaction.txt"; DestDir: "{app}\storage\"; Flags: ignoreversion
+Source: "storage\Transition2014.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
+Source: "storage\boot2strap201700.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
+
+; NOTE: Don't use "Flags: ignoreversion" on any shared system
 
 [Dirs] 
 Name: "{app}\storage"; AfterInstall: CopyOldSecret
@@ -60,6 +69,6 @@ begin
     begin
       // Successfully read the value
       FileCopy(Location + '\storage\secret3.out', ExpandConstant('{app}\storage\secret3.out'), True);
-      MsgBox('Importing names from: ' + Location, mbInformation, MB_OK);
+      //MsgBox('Importing names from: ' + Location, mbInformation, MB_OK);
     end;
 end;
