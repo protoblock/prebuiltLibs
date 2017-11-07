@@ -1,6 +1,6 @@
 // Protocol Buffers - Google's data interchange format
 // Copyright 2012 Google Inc.  All rights reserved.
-// https://developers.google.com/protocol-buffers/
+// http://code.google.com/p/protobuf/
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -33,7 +33,7 @@
 #ifndef GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_PNACL_H_
 #define GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_PNACL_H_
 
-namespace google_public {
+namespace google {
 namespace protobuf {
 namespace internal {
 
