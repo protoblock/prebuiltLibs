@@ -1,6 +1,6 @@
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
-// https://developers.google.com/protocol-buffers/
+// http://code.google.com/p/protobuf/
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -48,7 +48,7 @@
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/io/zero_copy_stream.h>
 
-namespace google_public {
+namespace google {
 namespace protobuf {
 namespace io {
 
@@ -118,7 +118,7 @@ class LIBPROTOBUF_EXPORT GzipOutputStream : public ZeroCopyOutputStream {
     ZLIB = 2,
   };
 
-  struct Options {
+  struct LIBPROTOBUF_EXPORT Options {
     // Defaults to GZIP.
     Format format;
 
