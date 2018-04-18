@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "protoblock"
-#define MyAppVersion "2.4.5"
+#define MyAppVersion "2.7"
 #define MyAppPublisher "Protoblock, Inc"
 #define MyAppURL "http://www.protoblock.com/"
 #define MyAppExeName "Protoblock.exe"
@@ -39,9 +39,13 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Source: "release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; 
 ;Source: "release\storage\bootstraptest201601.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
 ;Source: "release\storage\bootstraptest201603.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
-Source: "storage\GenesisTransition-Tr-Transaction.txt"; DestDir: "{app}\storage\"; Flags: ignoreversion
-Source: "storage\Transition2014.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
-Source: "storage\boot2strap201710.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
+Source: "storage\GenesisTransition-Tr-Transaction.txt"; DestDir: "{app}\storage\"; 
+Source: "storage\Transition2014.out"; DestDir: "{app}\storage\";
+Source: "storage\boot3strap201716.out"; DestDir: "{app}\storage\";
+Source: "storage\2014signedtx0.out"; DestDir: "{app}\storage\"; 
+Source: "storage\2014signedtx1.out"; DestDir: "{app}\storage\"; 
+Source: "storage\2014signedtx2.out"; DestDir: "{app}\storage\"; 
+Source: "storage\2014signedtx3.out"; DestDir: "{app}\storage\"; 
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system
 
