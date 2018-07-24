@@ -38,7 +38,8 @@
 ****************************************************************************/
 
 import QtQuick 2.0
-import QtTest 1.1
+import QtQuick.Window 2.0 // used for qtest_verifyItem
+import QtTest 1.2
 import "testlogger.js" as TestLogger
 import Qt.test.qtestroot 1.0
 
@@ -49,14 +50,14 @@ import Qt.test.qtestroot 1.0
     \since 4.8
     \ingroup qtquicktest
 
-    \section1 Introduction to QML test cases
+    \section1 Introduction to QML Test Cases
 
     Test cases are written as JavaScript functions within a TestCase
     type:
 
     \code
     import QtQuick 2.0
-    import QtTest 1.0
+    import QtTest 1.2
 
     TestCase {
         name: "MathTests"
@@ -98,7 +99,7 @@ import Qt.test.qtestroot 1.0
     once they have all completed.  If a test case doesn't need to run
     (because a precondition has failed), then \l optional can be set to true.
 
-    \section1 Data-driven tests
+    \section1 Data-driven Tests
 
     Table data can be provided to a test using a function name that ends
     with "_data". Alternatively, the \c init_data() function can be used
@@ -107,7 +108,7 @@ import Qt.test.qtestroot 1.0
 
     \code
     import QtQuick 2.0
-    import QtTest 1.1
+    import QtTest 1.2
 
     TestCase {
         name: "DataTests"
@@ -172,7 +173,7 @@ import Qt.test.qtestroot 1.0
     To get the effect of the \c{QBENCHMARK_ONCE} macro, prefix the test
     function name with "benchmark_once_".
 
-    \section1 Simulating keyboard and mouse events
+    \section1 Simulating Keyboard and Mouse Events
 
     The keyPress(), keyRelease(), and keyClick() methods can be used
     to simulate keyboard events within unit tests.  The events are
@@ -206,6 +207,59 @@ import Qt.test.qtestroot 1.0
     will fail.  Use the \l when and windowShown properties to track
     when the main window has been shown.
 
+    \section1 Managing Dynamically Created Test Objects
+
+    A typical pattern with QML tests is to
+    \l {Dynamic QML Object Creation from JavaScript}{dynamically create}
+    an item and then destroy it at the end of the test function:
+
+    \code
+    TestCase {
+        id: testCase
+        name: "MyTest"
+        when: windowShown
+
+        function test_click() {
+            var item = Qt.createQmlObject("import QtQuick 2.0; Item {}", testCase);
+            verify(item);
+
+            // Test item...
+
+            item.destroy();
+        }
+    }
+    \endcode
+
+    The problem with this pattern is that any failures in the test function
+    will cause the call to \c item.destroy() to be skipped, leaving the item
+    hanging around in the scene until the test case has finished. This can
+    result in interference with future tests; for example, by blocking input
+    events or producing unrelated debug output that makes it difficult to
+    follow the code's execution.
+
+    By calling \l createTemporaryQmlObject() instead, the object is guaranteed
+    to be destroyed at the end of the test function:
+
+    \code
+    TestCase {
+        id: testCase
+        name: "MyTest"
+        when: windowShown
+
+        function test_click() {
+            var item = createTemporaryQmlObject("import QtQuick 2.0; Item {}", testCase);
+            verify(item);
+
+            // Test item...
+
+            // Don't need to worry about destroying "item" here.
+        }
+    }
+    \endcode
+
+    For objects that are created via the \l {Component::}{createObject()} function
+    of \l Component, the \l createTemporaryObject() function can be used.
+
     \sa {QtTest::SignalSpy}{SignalSpy}, {Qt Quick Test Reference Documentation}
 */
 
@@ -221,7 +275,7 @@ Item {
         \qmlproperty string TestCase::name
 
         This property defines the name of the test case for result reporting.
-        The default is the empty string.
+        The default value is an empty string.
 
         \code
         TestCase {
@@ -358,6 +412,8 @@ Item {
     /*! \internal */
     property var qtest_events: qtest_events_normal
     TestEvent { id: qtest_events_normal }
+    /*! \internal */
+    property var qtest_temporaryObjects: []
 
     /*!
         \qmlmethod TestCase::fail(message = "")
@@ -388,10 +444,179 @@ Item {
         or \c{QVERIFY2(condition, message)} in C++.
     */
     function verify(cond, msg) {
+        if (arguments.length > 2)
+            qtest_fail("More than two arguments given to verify(). Did you mean tryVerify() or tryCompare()?", 1)
+
         if (msg === undefined)
             msg = "";
         if (!qtest_results.verify(cond, msg, util.callerFile(), util.callerLine()))
             throw new Error("QtQuickTest::fail")
+    }
+
+    /*!
+        \since 5.8
+        \qmlmethod TestCase::tryVerify(function, timeout = 5000, message = "")
+
+        Fails the current test case if \a function does not evaluate to
+        \c true before the specified \a timeout (in milliseconds) has elapsed.
+        The function is evaluated multiple times until the timeout is
+        reached. An optional \a message is displayed upon failure.
+
+        This function is intended for testing applications where a condition
+        changes based on asynchronous events. Use verify() for testing
+        synchronous condition changes, and tryCompare() for testing
+        asynchronous property changes.
+
+        For example, in the code below, it's not possible to use tryCompare(),
+        because the \c currentItem property might be \c null for a short period
+        of time:
+
+        \code
+        tryCompare(listView.currentItem, "text", "Hello");
+        \endcode
+
+        Instead, we can use tryVerify() to first check that \c currentItem
+        isn't \c null, and then use a regular compare afterwards:
+
+        \code
+        tryVerify(function(){ return listView.currentItem })
+        compare(listView.currentItem.text, "Hello")
+        \endcode
+
+        \sa verify(), compare(), tryCompare(), SignalSpy::wait()
+    */
+    function tryVerify(expressionFunction, timeout, msg) {
+        if (!expressionFunction || !(expressionFunction instanceof Function)) {
+            qtest_results.fail("First argument must be a function", util.callerFile(), util.callerLine())
+            throw new Error("QtQuickTest::fail")
+        }
+
+        if (timeout && typeof(timeout) !== "number") {
+            qtest_results.fail("timeout argument must be a number", util.callerFile(), util.callerLine())
+            throw new Error("QtQuickTest::fail")
+        }
+
+        if (msg && typeof(msg) !== "string") {
+            qtest_results.fail("message argument must be a string", util.callerFile(), util.callerLine())
+            throw new Error("QtQuickTest::fail")
+        }
+
+        if (!timeout)
+            timeout = 5000
+
+        if (msg === undefined)
+            msg = "function returned false"
+
+        if (!expressionFunction())
+            wait(0)
+
+        var i = 0
+        while (i < timeout && !expressionFunction()) {
+            wait(50)
+            i += 50
+        }
+
+        if (!qtest_results.verify(expressionFunction(), msg, util.callerFile(), util.callerLine()))
+            throw new Error("QtQuickTest::fail")
+    }
+
+    /*!
+        \since 5.9
+        \qmlmethod object TestCase::createTemporaryQmlObject(string qml, object parent, string filePath)
+
+        This function dynamically creates a QML object from the given \a qml
+        string with the specified \a parent. The returned object will be
+        destroyed (if it was not already) after \l cleanup() has finished
+        executing, meaning that objects created with this function are
+        guaranteed to be destroyed after each test, regardless of whether or
+        not the tests fail.
+
+        If there was an error while creating the object, \c null will be
+        returned.
+
+        If \a filePath is specified, it will be used for error reporting for
+        the created object.
+
+        This function calls
+        \l {QtQml::Qt::createQmlObject()}{Qt.createQmlObject()} internally.
+
+        \sa {Managing Dynamically Created Test Objects}
+    */
+    function createTemporaryQmlObject(qml, parent, filePath) {
+        if (typeof qml !== "string") {
+            qtest_results.fail("First argument must be a string of QML; actual type is " + typeof qml,
+                util.callerFile(), util.callerLine());
+            throw new Error("QtQuickTest::fail");
+        }
+
+        if (!parent || typeof parent !== "object") {
+            qtest_results.fail("Second argument must be a valid parent object; actual type is " + typeof parent,
+                util.callerFile(), util.callerLine());
+            throw new Error("QtQuickTest::fail");
+        }
+
+        if (filePath !== undefined && typeof filePath !== "string") {
+            qtest_results.fail("Third argument must be a file path string; actual type is " + typeof filePath,
+                util.callerFile(), util.callerLine());
+            throw new Error("QtQuickTest::fail");
+        }
+
+        var object = Qt.createQmlObject(qml, parent, filePath);
+        qtest_temporaryObjects.push(object);
+        return object;
+    }
+
+    /*!
+        \since 5.9
+        \qmlmethod object TestCase::createTemporaryObject(Component component, object parent, object properties)
+
+        This function dynamically creates a QML object from the given
+        \a component with the specified optional \a parent and \a properties.
+        The returned object will be destroyed (if it was not already) after
+        \l cleanup() has finished executing, meaning that objects created with
+        this function are guaranteed to be destroyed after each test,
+        regardless of whether or not the tests fail.
+
+        If there was an error while creating the object, \c null will be
+        returned.
+
+        This function calls
+        \l {QtQml::Component::createObject()}{component.createObject()}
+        internally.
+
+        \sa {Managing Dynamically Created Test Objects}
+    */
+    function createTemporaryObject(component, parent, properties) {
+        if (typeof component !== "object") {
+            qtest_results.fail("First argument must be a Component; actual type is " + typeof component,
+                util.callerFile(), util.callerLine());
+            throw new Error("QtQuickTest::fail");
+        }
+
+        if (properties && typeof properties !== "object") {
+            qtest_results.fail("Third argument must be an object; actual type is " + typeof properties,
+                util.callerFile(), util.callerLine());
+            throw new Error("QtQuickTest::fail");
+        }
+
+        var object = component.createObject(parent, properties ? properties : ({}));
+        qtest_temporaryObjects.push(object);
+        return object;
+    }
+
+    /*!
+        \internal
+
+        Destroys all temporary objects that still exist.
+    */
+    function qtest_destroyTemporaryObjects() {
+        for (var i = 0; i < qtest_temporaryObjects.length; ++i) {
+            var temporaryObject = qtest_temporaryObjects[i];
+            // ### the typeof check can be removed when QTBUG-57749 is fixed
+            if (temporaryObject && typeof temporaryObject.destroy === "function")
+                temporaryObject.destroy();
+        }
+        qtest_temporaryObjects = [];
     }
 
     /*! \internal */
@@ -532,6 +757,10 @@ Item {
             bProperties.push(i); // collect exp's properties
         }
 
+        if (aProperties.length == 0 && bProperties.length == 0) { // at least a special case for QUrl
+            return eq && (JSON.stringify(act) == JSON.stringify(exp));
+        }
+
         // Ensures identical properties name
         return eq && qtest_compareInternal(aProperties.sort(), bProperties.sort());
 
@@ -612,7 +841,14 @@ Item {
 
         Returns a snapshot image object of the given \a item.
 
-        The returned image object has the following methods:
+        The returned image object has the following properties:
+        \list
+        \li width Returns the width of the underlying image (since 5.10)
+        \li height Returns the height of the underlying image (since 5.10)
+        \li size Returns the size of the underlying image (since 5.10)
+        \endlist
+
+        Additionally, the returned image object has the following methods:
         \list
         \li red(x, y) Returns the red channel value of the pixel at \a x, \a y position
         \li green(x, y) Returns the green channel value of the pixel at \a x, \a y position
@@ -632,6 +868,21 @@ Item {
         rect.width += 10;
         var newImage = grabImage(rect);
         verify(!newImage.equals(image));
+        \endcode
+        \li save(path) Saves the image to the given \a path. If the image cannot
+        be saved, an exception will be thrown. (since 5.10)
+
+        This can be useful to perform postmortem analysis on failing tests, for
+        example:
+
+        \code
+        var image = grabImage(rect);
+        try {
+            compare(image.width, 100);
+        } catch (ex) {
+            image.save("debug.png");
+            throw ex;
+        }
         \endcode
 
         \endlist
@@ -711,6 +962,11 @@ Item {
         \sa compare(), SignalSpy::wait()
     */
     function tryCompare(obj, prop, value, timeout, msg) {
+        if (arguments.length == 1 || (typeof(prop) != "string" && typeof(prop) != "number")) {
+            qtest_results.fail("A property name as string or index is required for tryCompare",
+                        util.callerFile(), util.callerLine())
+            throw new Error("QtQuickTest::fail")
+        }
         if (arguments.length == 2) {
             qtest_results.fail("A value is required for tryCompare",
                         util.callerFile(), util.callerLine())
@@ -763,7 +1019,7 @@ Item {
         \c{QEXPECT_FAIL(tag, message, Abort)} in C++.
 
         If the test is not data-driven, then \a tag must be set to
-        the empty string.
+        an empty string.
 
         \sa expectFailContinue()
     */
@@ -789,7 +1045,7 @@ Item {
         \c{QEXPECT_FAIL(tag, message, Continue)} in C++.
 
         If the test is not data-driven, then \a tag must be set to
-        the empty string.
+        an empty string.
 
         \sa expectFail()
     */
@@ -859,8 +1115,8 @@ Item {
     function waitForRendering(item, timeout) {
         if (timeout === undefined)
             timeout = 5000
-        if (!item)
-            qtest_fail("No item given to waitForRendering", 1)
+        if (!qtest_verifyItem(item, "waitForRendering"))
+            return
         return qtest_results.waitForRendering(item, timeout)
     }
 
@@ -956,6 +1212,26 @@ Item {
     }
 
     /*!
+        \since 5.10
+        \qmlmethod TestCase::keySequence(keySequence)
+
+        Simulates typing of \a keySequence. The key sequence can be set
+        to one of the \l{QKeySequence::StandardKey}{standard keyboard shortcuts}, or
+        it can be described with a string containing a sequence of up to four key
+        presses.
+
+        Each event shall be sent to the TestCase window or, in case of multiple windows,
+        to the current active window. See \l QGuiApplication::focusWindow() for more details.
+
+        \sa keyPress(), keyRelease(), {GNU Emacs Style Key Sequences},
+        {QtQuick::Shortcut::sequence}{Shortcut.sequence}
+    */
+    function keySequence(keySequence) {
+        if (!qtest_events.keySequence(keySequence))
+            qtest_fail("window not shown", 2)
+    }
+
+    /*!
         \qmlmethod TestCase::mousePress(item, x = item.width / 2, y = item.height / 2, button = Qt.LeftButton, modifiers = Qt.NoModifier, delay = -1)
 
         Simulates pressing a mouse \a button with an optional \a modifier
@@ -972,8 +1248,8 @@ Item {
         \sa mouseRelease(), mouseClick(), mouseDoubleClick(), mouseDoubleClickSequence(), mouseMove(), mouseDrag(), mouseWheel()
     */
     function mousePress(item, x, y, button, modifiers, delay) {
-        if (!item)
-            qtest_fail("No item given to mousePress", 1)
+        if (!qtest_verifyItem(item, "mousePress"))
+            return
 
         if (button === undefined)
             button = Qt.LeftButton
@@ -1006,8 +1282,8 @@ Item {
         \sa mousePress(), mouseClick(), mouseDoubleClick(), mouseDoubleClickSequence(), mouseMove(), mouseDrag(), mouseWheel()
     */
     function mouseRelease(item, x, y, button, modifiers, delay) {
-        if (!item)
-            qtest_fail("No item given to mouseRelease", 1)
+        if (!qtest_verifyItem(item, "mouseRelease"))
+            return
 
         if (button === undefined)
             button = Qt.LeftButton
@@ -1042,8 +1318,8 @@ Item {
         \sa mousePress(), mouseClick(), mouseDoubleClick(), mouseDoubleClickSequence(), mouseMove(), mouseRelease(), mouseWheel()
     */
     function mouseDrag(item, x, y, dx, dy, button, modifiers, delay) {
-        if (!item)
-            qtest_fail("No item given to mouseDrag", 1)
+        if (!qtest_verifyItem(item, "mouseDrag"))
+            return
 
         if (item.x === undefined || item.y === undefined)
             return
@@ -1053,6 +1329,7 @@ Item {
             modifiers = Qt.NoModifier
         if (delay == undefined)
             delay = -1
+        var moveDelay = Math.max(1, delay === -1 ? qtest_events.defaultMouseDelay : delay)
 
         // Divide dx and dy to have intermediate mouseMove while dragging
         // Fractions of dx/dy need be superior to the dragThreshold
@@ -1066,12 +1343,12 @@ Item {
 
         mousePress(item, x, y, button, modifiers, delay)
         //trigger dragging
-        mouseMove(item, x + util.dragThreshold + 1, y + util.dragThreshold + 1, delay, button)
+        mouseMove(item, x + util.dragThreshold + 1, y + util.dragThreshold + 1, moveDelay, button)
         if (ddx > 0 || ddy > 0) {
-            mouseMove(item, x + ddx, y + ddy, delay, button)
-            mouseMove(item, x + 2*ddx, y + 2*ddy, delay, button)
+            mouseMove(item, x + ddx, y + ddy, moveDelay, button)
+            mouseMove(item, x + 2*ddx, y + 2*ddy, moveDelay, button)
         }
-        mouseMove(item, x + dx, y + dy, delay, button)
+        mouseMove(item, x + dx, y + dy, moveDelay, button)
         mouseRelease(item, x + dx, y + dy, button, modifiers, delay)
     }
 
@@ -1092,8 +1369,8 @@ Item {
         \sa mousePress(), mouseRelease(), mouseDoubleClick(), mouseDoubleClickSequence(), mouseMove(), mouseDrag(), mouseWheel()
     */
     function mouseClick(item, x, y, button, modifiers, delay) {
-        if (!item)
-            qtest_fail("No item given to mouseClick", 1)
+        if (!qtest_verifyItem(item, "mouseClick"))
+            return
 
         if (button === undefined)
             button = Qt.LeftButton
@@ -1126,8 +1403,8 @@ Item {
         \sa mouseDoubleClickSequence(), mousePress(), mouseRelease(), mouseClick(), mouseMove(), mouseDrag(), mouseWheel()
     */
     function mouseDoubleClick(item, x, y, button, modifiers, delay) {
-        if (!item)
-            qtest_fail("No item given to mouseDoubleClick", 1)
+        if (!qtest_verifyItem(item, "mouseDoubleClick"))
+            return
 
         if (button === undefined)
             button = Qt.LeftButton
@@ -1167,8 +1444,8 @@ Item {
         \sa mouseDoubleClick(), mousePress(), mouseRelease(), mouseClick(), mouseMove(), mouseDrag(), mouseWheel()
     */
     function mouseDoubleClickSequence(item, x, y, button, modifiers, delay) {
-        if (!item)
-            qtest_fail("No item given to mouseDoubleClickSequence", 1)
+        if (!qtest_verifyItem(item, "mouseDoubleClickSequence"))
+            return
 
         if (button === undefined)
             button = Qt.LeftButton
@@ -1199,8 +1476,8 @@ Item {
         \sa mousePress(), mouseRelease(), mouseClick(), mouseDoubleClick(), mouseDoubleClickSequence(), mouseDrag(), mouseWheel()
     */
     function mouseMove(item, x, y, delay, buttons) {
-        if (!item)
-            qtest_fail("No item given to mouseMove", 1)
+        if (!qtest_verifyItem(item, "mouseMove"))
+            return
 
         if (delay == undefined)
             delay = -1
@@ -1227,8 +1504,8 @@ Item {
         \sa mousePress(), mouseClick(), mouseDoubleClick(), mouseDoubleClickSequence(), mouseMove(), mouseRelease(), mouseDrag(), QWheelEvent::angleDelta()
     */
     function mouseWheel(item, x, y, xDelta, yDelta, buttons, modifiers, delay) {
-        if (!item)
-            qtest_fail("No item given to mouseWheel", 1)
+        if (!qtest_verifyItem(item, "mouseWheel"))
+            return
 
         if (delay == undefined)
             delay = -1
@@ -1244,6 +1521,109 @@ Item {
             qtest_fail("window not shown", 2)
    }
 
+    /*!
+        \qmlmethod TouchEventSequence TestCase::touchEvent(object item)
+
+        \since 5.9
+
+        Begins a sequence of touch events through a simulated QTouchDevice::TouchScreen.
+        Events are delivered to the window containing \a item.
+
+        The returned object is used to enumerate events to be delivered through a single
+        QTouchEvent. Touches are delivered to the window containing the TestCase unless
+        otherwise specified.
+
+        \code
+        Rectangle {
+            width: 640; height: 480
+
+            MultiPointTouchArea {
+                id: area
+                anchors.fill: parent
+
+                property bool touched: false
+
+                onPressed: touched = true
+            }
+
+            TestCase {
+                name: "ItemTests"
+                when: area.pressed
+                id: test1
+
+                function test_touch() {
+                    var touch = touchEvent(area);
+                    touch.press(0, area, 10, 10);
+                    touch.commit();
+                    verify(area.touched);
+                }
+            }
+        }
+        \endcode
+
+        \sa TouchEventSequence::press(), TouchEventSequence::move(), TouchEventSequence::release(), TouchEventSequence::stationary(), TouchEventSequence::commit(), QTouchDevice::TouchScreen
+    */
+
+    function touchEvent(item) {
+        if (!qtest_verifyItem(item, "touchEvent"))
+            return
+
+        return {
+            _defaultItem: item,
+            _sequence: qtest_events.touchEvent(item),
+
+            press: function (id, target, x, y) {
+                if (!target)
+                    target = this._defaultItem;
+                if (id === undefined)
+                    qtest_fail("No id given to TouchEventSequence::press", 1);
+                if (x === undefined)
+                    x = target.width / 2;
+                if (y === undefined)
+                    y = target.height / 2;
+                this._sequence.press(id, target, x, y);
+                return this;
+            },
+
+            move: function (id, target, x, y) {
+                if (!target)
+                    target = this._defaultItem;
+                if (id === undefined)
+                    qtest_fail("No id given to TouchEventSequence::move", 1);
+                if (x === undefined)
+                    x = target.width / 2;
+                if (y === undefined)
+                    y = target.height / 2;
+                this._sequence.move(id, target, x, y);
+                return this;
+            },
+
+            stationary: function (id) {
+                if (id === undefined)
+                    qtest_fail("No id given to TouchEventSequence::stationary", 1);
+                this._sequence.stationary(id);
+                return this;
+            },
+
+            release: function (id, target, x, y) {
+                if (!target)
+                    target = this._defaultItem;
+                if (id === undefined)
+                    qtest_fail("No id given to TouchEventSequence::release", 1);
+                if (x === undefined)
+                    x = target.width / 2;
+                if (y === undefined)
+                    y = target.height / 2;
+                this._sequence.release(id, target, x, y);
+                return this;
+            },
+
+            commit: function () {
+                 this._sequence.commit();
+                 return this;
+            }
+        };
+    }
 
     // Functions that can be overridden in subclasses for init/cleanup duties.
     /*!
@@ -1295,6 +1675,23 @@ Item {
     function cleanup() {}
 
     /*! \internal */
+    function qtest_verifyItem(item, method) {
+        try {
+            if (!(item instanceof Item) &&
+                !(item instanceof Window)) {
+                // it's a QObject, but not a type
+                qtest_fail("TypeError: %1 requires an Item or Window type".arg(method), 2);
+                return false;
+            }
+        } catch (e) { // it's not a QObject
+            qtest_fail("TypeError: %1 requires an Item or Window type".arg(method), 3);
+            return false;
+        }
+
+        return true;
+    }
+
+    /*! \internal */
     function qtest_runInternal(prop, arg) {
         try {
             qtest_testCaseResult = testCase[prop](arg)
@@ -1316,6 +1713,7 @@ Item {
             qtest_runInternal(prop, arg)
             qtest_results.finishTestData()
             qtest_runInternal("cleanup")
+            qtest_destroyTemporaryObjects()
             qtest_results.finishTestDataCleanup()
             // wait(0) will call processEvents() so objects marked for deletion
             // in the test function will be deleted.
@@ -1361,11 +1759,6 @@ Item {
 
     /*! \internal */
     function qtest_run() {
-        if (util.printAvailableFunctions) {
-            completed = true
-            return
-        }
-
         if (TestLogger.log_start_test()) {
             qtest_results.reset()
             qtest_results.testCaseName = name
@@ -1516,29 +1909,9 @@ Item {
         }
     }
 
-
     Component.onCompleted: {
         QTestRootObject.hasTestCase = true;
         qtest_componentCompleted = true;
-
-        if (util.printAvailableFunctions) {
-            var testList = []
-            for (var prop in testCase) {
-                if (prop.indexOf("test_") != 0 && prop.indexOf("benchmark_") != 0)
-                    continue
-                var tail = prop.lastIndexOf("_data");
-                if (tail != -1 && tail == (prop.length - 5))
-                    continue
-                // Note: cannot run functions in TestCase elements
-                // that lack a name.
-                if (name.length > 0)
-                    testList.push(name + "::" + prop + "()")
-            }
-            testList.sort()
-            for (var index in testList)
-                console.log(testList[index])
-            return
-        }
         qtest_testId = TestLogger.log_register_test(name)
         if (optional)
             TestLogger.log_optional_test(qtest_testId)
