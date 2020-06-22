@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "protoblock"
-#define MyAppVersion "2.9.3.1"
+#define MyAppVersion "3.0.1"
 #define MyAppPublisher "Protoblock, Inc"
 #define MyAppURL "http://www.protoblock.com/"
 #define MyAppExeName "Protoblock.exe"
