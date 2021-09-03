@@ -2,10 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "protoblock"
-#define MyAppVersion "3.0.1"
+#define MyAppVersion "3.2.0"
 #define MyAppPublisher "Protoblock, Inc"
-#define MyAppURL "http://www.protoblock.com/"
-#define MyAppExeName "Protoblock.exe"
+#define MyAppURL "fantasybit.com"
+#define MyAppExeName "protoblock-qt.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -19,7 +19,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={userdocs}\{#MyAppName}
+DefaultDirName={sd}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 OutputBaseFilename=protoblock
@@ -37,12 +37,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; 
-;Source: "release\storage\bootstraptest201601.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
-;Source: "release\storage\bootstraptest201603.out"; DestDir: "{app}\storage\"; Flags: ignoreversion
-Source: "storage\blk18.out"; DestDir: "{app}\storage\";
-Source: "storage\boot4strap201716.out"; DestDir: "{app}\storage\";
-
-; NOTE: Don't use "Flags: ignoreversion" on any shared system
+Source: "storage\blk2020.out"; DestDir: "{app}\storage\"; 
+; VC++ redistributable runtime. Extracted by VC2017RedistNeedsInstall(), if needed.
+Source: "redist\vc_redist.x64.exe"; DestDir: {app}; Check: VC2017RedistNeedsInstall
 
 [Dirs] 
 Name: "{app}\storage"; AfterInstall: CopyOldSecret
@@ -53,21 +50,43 @@ Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
+Filename: "{app}\vc_redist.x64.exe"; Parameters: "/q /norestart"; \
+Check: VC2017RedistNeedsInstall; StatusMsg: "Installing VC++ redistributables...";
+
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 
 [Code]
-
+procedure CopyOldSecret();
 var
   Location: String;
-  
-procedure CopyOldSecret();
+
 begin
     if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{79913283-A35B-4274-927C-1B52D286D939}_is1',
        'InstallLocation', Location) then
     begin
       // Successfully read the value
       FileCopy(Location + '\storage\secret3.out', ExpandConstant('{app}\storage\secret3.out'), True);
-      //MsgBox('Importing names from: ' + Location, mbInformation, MB_OK);
+      MsgBox('Importing names from: ' + Location, mbInformation, MB_OK);
     end;
 end;
+
+function VC2017RedistNeedsInstall: Boolean;
+var 
+  Version: String;
+begin
+  if RegQueryStringValue(HKEY_LOCAL_MACHINE,
+       'SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64', 'Version', Version) then
+  begin
+    // Is the installed version at least 14.14 ? 
+    Log('VC Redist Version check : found ' + Version);
+    Result := (CompareStr(Version, 'v14.14.26429.03')<0);
+  end
+  else 
+  begin
+    // Not even an old version installed
+    Result := True;
+  end;
+end;
+
+

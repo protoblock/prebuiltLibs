@@ -1,1 +1,2 @@
-windeployqt --release --qmldir D:\Qt\5.7\msvc2013_64\qml -qml -quick -xmlpatterns -core
+from x64 native Command Prompt 
+C:\Qt\5.12.11\msvc2017_64\bin\windeployqt.exe --release --no-translations --qmldir C:\work\protoblock\src\gui\qml .\protoblock-qt.exe
