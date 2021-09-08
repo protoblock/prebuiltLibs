@@ -260,6 +260,17 @@ ScrollView {
         if (index >= 0 && index <= columnCount && object.Accessible.role === Accessible.ColumnHeader) {
             object.__view = root
             columnModel.insert(index, {columnItem: object})
+            if (root.__columns[index] !== object) {
+                // The new column needs to be put into __columns at the specified index
+                // so the list needs to be recreated to be correct
+                var arr = []
+                for (var i = 0; i < index; ++i)
+                    arr.push(root.__columns[i])
+                arr.push(object)
+                for (i = index; i < root.__columns.length; ++i)
+                    arr.push(root.__columns[i])
+                root.__columns = arr
+            }
             return object
         }
 
@@ -411,9 +422,9 @@ ScrollView {
         interactive: Settings.hasTouchScreen
         property var rowItemStack: [] // Used as a cache for rowDelegates
 
-        readonly property bool transientScrollbars: __style && !!__style.transientScrollBars
+        readonly property bool transientScrollBars: __style && !!__style.transientScrollBars
         readonly property real vScrollbarPadding: __scroller.verticalScrollBar.visible
-                                                  && !transientScrollbars && Qt.platform.os === "osx" ?
+                                                  && !transientScrollBars && Qt.platform.os === "osx" ?
                                                   __verticalScrollBar.width + __scroller.scrollBarSpacing + root.__style.padding.right : 0
 
         Binding {
@@ -482,7 +493,7 @@ ScrollView {
             y: listView.contentHeight - listView.contentY + listView.originY
             width: parent.width
             visible: alternatingRowColors
-            height: viewport.height - listView.contentHeight
+            height: listView.model && listView.model.count ? (viewport.height - listView.contentHeight) : 0
             Repeater {
                 model: visible ? parent.paddedRowCount : 0
                 Loader {
@@ -659,7 +670,7 @@ ScrollView {
                         Rectangle{
                             id: targetmark
                             width: parent.width
-                            height:parent.height * .50 //Jay Berg
+                            height:parent.height
                             opacity: (treeViewMovable && index === repeater.targetIndex && repeater.targetIndex !== repeater.dragIndex) ? 0.5 : 0
                             Behavior on opacity { NumberAnimation { duration: 160 } }
                             color: palette.highlight
@@ -670,10 +681,7 @@ ScrollView {
                             id: headerClickArea
                             drag.axis: Qt.YAxis
                             hoverEnabled: Settings.hoverEnabled
-//                            anchors.fill: parent jay Berg
-                            anchors.bottom: parent.bottom
-                            width: parent.width
-                            height: parent.height * .50
+                            anchors.fill: parent
                             onClicked: {
                                 if (sortIndicatorColumn === index)
                                     sortIndicatorOrder = sortIndicatorOrder === Qt.AscendingOrder ? Qt.DescendingOrder : Qt.AscendingOrder
