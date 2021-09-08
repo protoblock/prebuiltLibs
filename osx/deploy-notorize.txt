@@ -1,0 +1,44 @@
+Step1: 
+/Users/satoshi/qt/5.12.11/clang_64/bin/macdeployqt ./Protoblock.app -qmldir=/Users/satoshi/nwork/protoblock-core/src/gui/qml -qmldir=/Users/satoshi/nwork/protoblock-core/apps/protoblock-qt/qml-main
+
+Step2: 
+codesign --deep --force --verify --verbose --sign "Developer ID Application: " --options runtime protoblock.app
+
+Step3: 
+spctl -a -vvvvv Protoblock.app  && echo yes
+
+Step4: 
+ditto -ck --rsrc --sequesterRsrc "protoblock.app" "protoblock.zip"
+
+Step5:
+create app specific password for apple id. 
+
+xcrun altool --notarize-app -t osx -f protoblock.zip --primary-bundle-id="protoblock.protoblock-qt" -u "" -p ""
+
+RequestUUID = 3b4f0704-f52b-41c0-a0ec-1866fbc24244
+
+Step6: 
+"/usr/bin/xcrun" altool --verbose --notarization-info 3b4f0704-f52b-41c0-a0ec-1866fbc24244 -u "" -p ""
+
+RequestUUID: 3b4f0704-f52b-41c0-a0ec-1866fbc24244
+Status: success
+Status Message: Package Approved
+
+Step7: xcrun stapler staple "Protoblock.app"
+
+Step8: create DMG 
+
+Step9: 
+codesign --force --verify --verbose --sign "Developer ID Application: " --options runtime protoblock.dmg
+
+Step10: 
+xcrun altool --notarize-app -t osx -f protoblock.dmg --primary-bundle-id="protoblock.protoblock-qt" -u "" -p ""
+
+RequestUUID = 40d4a2db-dac4-4adf-a9a4-3b19479c3b2f
+
+Step11: 
+"/usr/bin/xcrun" altool --verbose --notarization-info 40d4a2db-dac4-4adf-a9a4-3b19479c3b2f -u "" -p ""
+
+Step12:
+Step7: xcrun stapler staple "Protoblock.dmg"
+
